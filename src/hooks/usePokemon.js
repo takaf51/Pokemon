@@ -12,7 +12,7 @@ const usePokemon = () => {
   const getContent = async (reqString, apply) => {
     try{
       const res = await fetch(reqString);
-      if(!res.ok) throw new Error(res.status || "Something wrong when accessing pokemon data");
+      if(!res.ok) throw new Error(res.status || "Something wrong while accessing pokemon data");
       const data = await res.json();
       apply(data);
     } catch (err) {
@@ -46,7 +46,7 @@ const usePokemon = () => {
   const prev = () => {
     if(index < 1) return;
     updatePokemon(parseInt(index) - 1);
-    setIndex(prev => prev -1);
+    setIndex(prev => prev - 1);
     
   }
   const setPokemonByIndex = i => {
@@ -60,31 +60,3 @@ const usePokemon = () => {
 
 export default usePokemon;
 
-
-
-
-  // const updatePokemon = async (i) => {
-  //   if(i < 0 || pokeList.length < i) return;
-  //   try{
-  //     const res = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${parseInt(i) + 1}`);
-  //     if(!res.ok) throw new Error(res.status || "Something wrong when accessing pokemon data");
-  //     const data = await res.json();
-  //     const description = data.flavor_text_entries.filter(ent => ent.language.name ==='en')[0].flavor_text.replace(/[\n\f]/g, '');
-  //     setPokemon({name: data.name, description, imgURL: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${parseInt(i) + 1}.svg`});
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
-
-
-  // const getPokemonList = async() => {
-  //   try{
-  //     const res = await fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=150');
-  //     if(!res.ok) throw new Error(res.status || "Something wrong when accessing pokemon data");
-  //     const data = await res.json();
-  //     setPokeList(data.results);
-  //     updatePokemon(0);
-  //   } catch (err) {
-  //     console.err(err);
-  //   }
-  // }
